@@ -5,7 +5,7 @@
 #define RECIPIENT_EMAIL "akshaybhawarkiti@gmail.com"
 
 SMTPSession smtp;  //declare smtp 
-Session_Config config; //initialising smtp configuration
+Session_Config config; //initialising smtp configration
 SMTP_Message message; // Declare message as a global variable
 
 void setup() {
@@ -27,6 +27,12 @@ void setup() {
   message.sender.email = AUTHOR_EMAIL;
   message.subject = F("HI I'M REVANTH");
   message.addRecipient(F("akshaybhawarkiti@gmail.com"), RECIPIENT_EMAIL);
+
+  // email conttent test
+  String textMsg = "HI WE ARE TEAM SUPPLY CHAIN SAVIOURS";
+  message.text.content = textMsg.c_str();
+  message.text.charSet = "us-ascii";
+  message.text.transfer_encoding = Content_Transfer_Encoding::enc_7bit;
 }
 
 void loop() {
