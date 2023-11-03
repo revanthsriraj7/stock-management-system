@@ -1,0 +1,57 @@
+//weight code
+//2:20
+//2/11/23
+//code 6
+
+#include"HX711.h"  //including HX711 amplifier library 
+  //defining load cell pins
+  const int LOADCELL_DOUT_PIN = D7;  //D7 connected to DT pin of loadcell
+  const int LOADCELL_SCK_PIN = D6;  //D6 connected to SCK pin of loadcell
+  HX711 scale;   //defining scale level from teh amplifier
+  int weight;
+
+void setup() {
+  
+  // SCALE SETUP
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  scale.set_scale(1131.22); // Calibration
+  scale.tare();
+}
+
+void loop() {
+  weight = scale.get_units(3);
+
+  //mode 1
+
+  Serial.print("Grams: ");
+  Serial.print(weight);
+
+  //mode 2
+
+  weight = scale.get_units(3);
+  Serial.print("Grams: ");
+  Serial.print(weight);
+  if(weight <= 100)
+  Serial.print("send sms");
+
+  //mode 3
+
+  weight = scale.get_units(3);
+  int qun = weight / 15;
+  Serial.print("Units: ");
+  Serial.print(qun);
+  Serial.print(" Pecs");
+  if(qun <= 100)
+  Serial.print("send sms");
+
+  //mode 4
+
+  weight = scale.get_units(3);
+  float volume = weight/0.9998395;
+  Serial.print("volume: ");
+  Serial.print(volume , 2);
+  Serial.print(" mL");
+  if(volume <= 100)
+  Serial.print("send sms");
+
+}
