@@ -3,8 +3,8 @@
 //3/11/23
 //code 5
 
-#define WIFI_SSID "wifi SSID"         //defining wifi username and passowrod to be connected
-#define WIFI_PASSWORD "wifi password"
+#define WIFI_SSID "akshay"         //defined wifi username and passowrod to be connected
+#define WIFI_PASSWORD "aks142004"
 
 void setup() {
   Serial.println("Connecting to Wi-Fi...");
